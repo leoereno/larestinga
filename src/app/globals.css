@@ -1,12 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #FAF9F4;
   --foreground: #171717;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-whitemid: #FAF9F4;
+  --color-lightpurple: #ECE8F5;
+  --color-darkpurple: #785990;
+  --color-darkgreen: #526239;
+  --color-lightgreen: #B4CD94;
+  --color-blackwrite: #373739;
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -24,3 +30,4 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+

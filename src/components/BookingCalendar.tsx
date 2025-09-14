@@ -36,7 +36,7 @@ const generateTimeSlots = (dayOfWeek: number): string[] => {
   return slots;
 };
 
-let maxDate = new Date();
+const maxDate = new Date();
 maxDate.setMonth(maxDate.getMonth() + 3);
 
 export default function HomePage() {

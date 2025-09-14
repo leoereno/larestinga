@@ -1,6 +1,5 @@
 import { google } from 'googleapis';
 import { NextResponse } from 'next/server';
-import { getDay, parseISO } from 'date-fns';
 
 // Inicializa o cliente do Google Calendar com as credenciais
 const auth = new google.auth.GoogleAuth({

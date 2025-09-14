@@ -1,21 +1,3 @@
-// 'use client';
-
-// import Hero from "@/components/HeroSection";
-// import Navbar from "@/components/navbar";
-
-
-// export default function HomePage() {
-
-
-//   return (
-//     <>
-//       <Navbar />
-//       <Hero />
-//     </>
-    
-//   );
-// }
-
 import Layout from '../components/Layout';
 import HeroSection from '../components/HeroSection';
 import TeamSection from '@/components/TeamSection';

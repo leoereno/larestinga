@@ -77,14 +77,14 @@ export async function POST(request: Request) {
 
     const event = {
       summary: `Consulta: ${patientName}`,
-      description: `Agendamento de consulta para ${patientName}. Contato: ${patientEmail}`,
+      description: `Cita programada para ${patientName}. Contacto: ${patientEmail}`,
       start: {
         dateTime: startDateTime,
-        timeZone: 'America/Sao_Paulo',
+        timeZone: 'America/Lima',
       },
       end: {
         dateTime: endDateTime,
-        timeZone: 'America/Sao_Paulo',
+        timeZone: 'America/Lima',
       },
       //attendees: [{ email: patientEmail }],
       reminders: {

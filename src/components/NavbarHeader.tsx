@@ -2,7 +2,7 @@ import logo from '../../public/la-restinga-logo.svg';
 import Image from 'next/image'
 import { satoshi } from './HeroSection';
 
-export default function Navbar() {
+export default function NavbarHeader() {
     return(
         <nav className='flex bg-whitemid rounded-r-4xl gap-4 md:gap-32 rounded-l-4xl w-fit px-2 py-1 md:px-4 md:py-2 fixed top-0 z-10 m-5 flex-row justify-between self-center'>
             <div className='flex flex-row items-center'>

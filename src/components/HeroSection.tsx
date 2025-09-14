@@ -31,9 +31,9 @@ export const satoshiBold = localFont({
 
 export default function HeroSection() {
   return (
-    <section className={`${canpileDrawn.className} py-12 md:py-24 pb-0 text-center flex flex-col items-center bg-gray-50 bg-[url(/herobg.png)] bg-no-repeat bg-cover md:pb-0`}>
+    <section className={`${canpileDrawn.className} py-12 md:py-24 pb-0 text-center flex flex-col items-center bg-gray-50 bg-[url(/herobg.png)] bg-no-repeat bg-cover md:pb-0 justify-center`}>
       {/* PLACEHOLDER: Hero Banner Image */}
-      <div className="">
+      <div className="flex flex-col mt-32">
         <p className="text-3xl md:text-5xl font-bold mb-4 pr-8 pl-8 md:pr-12 md:pl-12 text-darkpurple bg-[url(/mask2.svg)] bg-cover bg-no-repeat bg-center">
             Un refugio para la
         </p>

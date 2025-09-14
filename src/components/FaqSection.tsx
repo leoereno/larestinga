@@ -2,7 +2,8 @@
 import { useState } from "react";
 import { canpileDrawn, satoshi } from "./HeroSection";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
-
+import Image from "next/image";
+import bottomArch from '../../public/bottom-arch.svg';
 const faqs = [
   {
     question: "¿A quiénes atiende La Restinga?",
@@ -28,19 +29,30 @@ const faqs = [
 
 export default function FAQSection() {
   return (
-    <section className={`${canpileDrawn.className} text-darkpurple py-12 md:py-16 bg-whitemid flex flex-col items-center px-8 md:px-24`} id="faqs">
+    <section className={`${canpileDrawn.className} relative text-darkpurple md:py-16 md:pb-0 bg-whitemid flex flex-col items-center md:px-0`} id="faqs">
           <div className="flex flex-col gap-4 w-fit">
             <span className="text-4xl underline max-w-full text-center md:text-left underline-offset-4">04</span>
             <h2 className="text-3xl md:text-5xl font-semibold text-center">Dudas Frecuentes</h2>
             <p className={`${satoshi.className} text-blackwrite text-center`}>Estamos aquí para ayudarte. Mira las respuestas a las dudas más comunes.</p>
           </div>
 
-          <div className="my-4">
+          <div className="my-4 px-4">
             {faqs.map((q,i) => (
               <Question answer={q.answer} question={q.question} key={i}/>
             ))}
           </div>
+            <Image 
+              src={bottomArch}
+              alt=""
+              className="w-full relative"
+            />
+            
+            <div className={`${canpileDrawn.className} flex flex-col gap-4 w-fit text-darkpurple absolute md:bottom-10 -bottom-20`}>
+              <span className="text-4xl underline max-w-full text-center md:text-left underline-offset-4">05</span>
+              <h2 className="text-3xl md:text-5xl font-semibold text-center">Agenda tu Consulta</h2>
+            </div>
 
+            
     </section>
   );
 }

@@ -155,7 +155,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className={`flex min-h-screen flex-col items-center p-8 bg-lightpurple my-2 ${satoshi.className}`}>       
+    <div className={`flex min-h-fit flex-col items-center bg-lightpurple my-12 mb-44 ${satoshi.className}`}>       
         {error && <p className={`${error == "" ? "hidden" : ""} text-red-500 text-center mb-4`}>{error}</p>}
         <div className="grid md:grid-cols-2 gap-12">
           {/* Coluna do Calendário e Horários */}

@@ -9,12 +9,12 @@ import SocialIcon from "./SocialIcon";
 
 export default function Footer () {
     return(
-        <footer className="flex flex-col bg-darkgreen p-8 items-center md:px-32">
-            <Image 
+        <footer className="flex flex-col bg-darkgreen p-8 pt-15 md:pt-0 items-center md:px-32">
+            {/* <Image 
                 src={logo}
                 alt=""
                 className="text-lightpurple"
-            />
+            /> */}
             <div className="flex flex-row mt-12 gap-8 border-b-2 p-12 w-full justify-center border-t-2 border-t-whitemid md:border-t-0">
                 <SocialIcon 
                     img={whatsapp}
@@ -34,7 +34,7 @@ export default function Footer () {
                 <SocialIcon 
                     img={facebook}
                     text="La Restinga CT"
-                    url=""
+                    url="https://www.facebook.com/people/La-Restinga-CT/61577627636616/"
                 />
             </div>
             <span className="text-sm text-center md:text-left mt-6 text-gray-300 md:self-start">© {new Date().getFullYear()} – La Restinga Centro Terapéutico – Todos los derechos reservados.</span>

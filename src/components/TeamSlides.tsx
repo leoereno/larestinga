@@ -9,7 +9,6 @@ import Slider, { Settings } from "react-slick";
 import Image from 'next/image';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import NextArrow from './Arrow';
 
 const images = [
     card1,
@@ -28,7 +27,22 @@ const settings: Settings = {
   slidesToShow: 2,
   slidesToScroll: 1,
   autoplay: false,
-  centerMode: true,
+//   centerMode: true,
+  arrows: true,
+  initialSlide: 2,
+  responsive: [
+      {
+        breakpoint: 500,
+        settings: {
+          centerMode: true,
+          centerPadding: '40',
+          infinite: true,
+          slidesToScroll: 1,
+          slidesToShow: 1,
+          initialSlide:3
+        }
+      }
+    ],
 //   arrows: true,
 //   nextArrow: <NextArrow previous={false}/>,
 //   prevArrow: <NextArrow previous={true}/>,
@@ -36,7 +50,7 @@ const settings: Settings = {
 
 export default function TeamSlides() {
     return(
-        <Slider {...settings} className='m-4 w-4xl'>
+        <Slider {...settings} className='m-4 w-2xl md:w-4xl self-center py-4'>
             {
                 images.map((img, index) => (
                     <div key={index}>

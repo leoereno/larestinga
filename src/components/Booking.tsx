@@ -1,5 +1,5 @@
 import BookingCalendar from "./BookingCalendar";
-import { canpileDrawn } from "./HeroSection";
+
 import Image from 'next/image';
 import logo from '../../public/logo-clara.svg';
 import footerArch from '../../public/footer-arch.svg';

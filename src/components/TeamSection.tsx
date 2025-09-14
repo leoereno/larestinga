@@ -5,7 +5,7 @@ import TeamSlides from "./TeamSlides";
 
 export default function TeamSection() {
   return (
-    <section className="py-12 md:py-16 mx-auto px-8 md:px-24 flex flex-row flex-wrap md:flex-nowrap justify-between bg-whitemid" id="team">
+    <section className="py-12 md:py-16 mx-auto px-8 md:px-24 flex flex-row flex-wrap md:flex-nowrap justify-between bg-whitemid gap-16 md:gap-64" id="team">
       <div className="text-darkpurple flex flex-col gap-4 max-w-xl">
         <span className={`underline ${canpileDrawn.className} underline-offset-4 text-4xl`}>03</span>
         <h2 className={`${canpileDrawn.className} font-bold text-3xl md:text-5xl`}>Nuestro Equipo</h2>

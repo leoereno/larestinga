@@ -5,10 +5,13 @@ import card4 from '../../public/cards/Mask group-3.png';
 import card5 from '../../public/cards/Mask group-4.png';
 import card6 from '../../public/cards/Mask group-5.png';
 import card7 from '../../public/cards/Mask group-6.png';
-import Slider, { Settings } from "react-slick";
 import Image from 'next/image';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
 
 const images = [
     card1,
@@ -20,48 +23,37 @@ const images = [
     card7
 ];
 
-const settings: Settings = {
-  dots: true,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 2,
-  slidesToScroll: 1,
-  autoplay: false,
-//   centerMode: true,
-  arrows: true,
-  initialSlide: 2,
-  responsive: [
-      {
-        breakpoint: 500,
-        settings: {
-          centerMode: true,
-          centerPadding: '40',
-          infinite: true,
-          slidesToScroll: 1,
-          slidesToShow: 1,
-          initialSlide:3
-        }
-      }
-    ],
-//   arrows: true,
-//   nextArrow: <NextArrow previous={false}/>,
-//   prevArrow: <NextArrow previous={true}/>,
-};
 
 export default function TeamSlides() {
     return(
-        <Slider {...settings} className='m-4 w-2xl md:w-4xl self-center py-4'>
-            {
-                images.map((img, index) => (
-                    <div key={index}>
-                        <Image 
-                            src={img}
-                            alt=''
-                            className=''
-                        />
-                    </div>
-                ))
-            }
-        </Slider>
+        <Swiper
+            modules={[Navigation]}
+            spaceBetween={0}
+            // slidesPerView={1}
+            breakpoints={{
+                0: {
+                    slidesPerView: 1
+                },
+
+                768: {
+                    slidesPerView: 2
+                }
+            }}
+            navigation
+            initialSlide={2}
+            loop
+            className='custom-swiper'
+            // style={{padding: '0 12px'}}
+        >
+            {images.map((img, index) => (
+                <SwiperSlide key={index}>
+                    <Image 
+                        src={img}
+                        alt=''
+                        className=''
+                    />
+                </SwiperSlide>
+            ))}
+        </Swiper>
     )
 }

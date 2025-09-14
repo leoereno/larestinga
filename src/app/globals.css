@@ -31,3 +31,10 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.custom-swiper .swiper-button-next,
+.custom-swiper .swiper-button-prev {
+  @apply text-lightgreen; /* Tailwind utility for text color */
+  /* Or use plain CSS color if more precise control is needed */
+  /* color: #4F46E5; */
+}
+

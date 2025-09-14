@@ -1,5 +1,3 @@
-import Image from "next/image";
-import logo from '../../public/logo-clara.svg';
 import whatsapp from '../../public/whatsapp 2.svg';
 import facebook from '../../public/facebook 1.svg';
 import email from '../../public/mail-4 1.svg';

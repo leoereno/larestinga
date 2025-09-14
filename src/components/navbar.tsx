@@ -19,7 +19,7 @@ export default function Navbar() {
                 <a href="#services" className={`${satoshi.className} text-darkpurple hidden md:inline`}>Nuestros Servicios</a>
                 <a href="#team" className={`${satoshi.className} text-darkpurple hidden md:inline`}>Nuestro Equipo</a>
                 <a href="#faqs" className={`${satoshi.className} text-darkpurple hidden md:inline`}>Dudas</a>
-                <a href="#booking" className={`${satoshi.className} bg-lightgreen rounded-l-4xl rounded-r-4xl px-4 py-4 text-darkgreen font-medium`}>Agenda tu consulta</a>
+                <a href="#booking" className={`${satoshi.className} bg-lightgreen rounded-l-4xl rounded-r-4xl px-4 py-4 text-darkgreen whitespace-nowrap text-xs`}>Agenda tu consulta</a>
 
             </div>
         </nav>

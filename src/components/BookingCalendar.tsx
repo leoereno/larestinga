@@ -202,7 +202,7 @@ export default function HomePage() {
                   })}
                 </div>
               ) : (
-                <p className="text-gray-500">Não há horários disponíveis para este dia.</p>
+                <p className="text-gray-500">No hay horarios disponibles para este día.</p>
               )}
             </div>
           </div>

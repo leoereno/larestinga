@@ -15,12 +15,12 @@ import 'swiper/css/navigation';
 
 const images = [
     card1,
-    card3,
+    card2,
     card4,
     card5,
     card6,
+    card3,
     card7,
-    card2
 ];
 
 
@@ -40,7 +40,7 @@ export default function TeamSlides() {
                 }
             }}
             navigation
-            initialSlide={2}
+            initialSlide={0}
             loop
             className='custom-swiper'
             // style={{padding: '0 12px'}}

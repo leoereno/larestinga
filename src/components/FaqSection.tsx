@@ -7,7 +7,7 @@ import bottomArch from '../../public/bottom-arch.svg';
 const faqs = [
   {
     question: "¿A quiénes atiende La Restinga?",
-    answer: "Atendemos a niñas, niños, adolescentes y sus familias.",
+    answer: "Atendemos a niñas, niños, adolescentes y sus famílias.\nPersonas que deseen conocer su estado emocional, fortalecer su bienstar y mejorar su calidad de vida.",
   },
   {
     question: "¿Necesito una derivación médica para empezar?",
@@ -23,7 +23,7 @@ const faqs = [
   },
   {
     question: "¿La primera sesión es solo una conversación?",
-    answer: "La primera sesión se orienta al diálogo y la comprensión de la situación para definir juntos el mejor camino a seguir.",
+    answer: "No, la primera sesión se orienta al diálogo y la comprensión de la situación para definir juntos el mejor camino a seguir.",
   },
 ];
 
@@ -64,14 +64,15 @@ interface QuestionProps {
   answer: string
 }
 function Question(props: QuestionProps) {
-  const [opened, setOpened] = useState(false)
+  const [opened, setOpened] = useState(false);
+  const answerLines = props.answer.split('\n');
   return(
     <div onClick={() => setOpened(!opened)} className={`${opened ? "bg-lightgreen" : "bg-whitemid"} ${satoshi.className} text-blackwrite border-2 border-lightgreen rounded-3xl my-4 py-2 px-4 md:px-8 text-md md:w-3xl`}>
       <div className="flex flex-row justify-between my-4 hover:cursor-pointer">
         <span className="font-bold self-center max-w-3/4">{props.question}</span>
         <span className="text-3xl md:text-3xl self-center">{opened ? <IoIosArrowUp/> : <IoIosArrowDown/>}</span>
       </div>
-      <span className={`${opened ? "" : "hidden"} text-md font-thin my-4`}>{props.answer}</span>
+      <span className={`${opened ? "" : "hidden"} text-md font-thin my-4`}>{answerLines.map((a, i) => <p key={i}>{a}<br></br></p>)}</span>
     </div>
   )
 }

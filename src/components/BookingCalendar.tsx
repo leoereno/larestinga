@@ -5,6 +5,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { format, addHours, setHours, setMinutes, setSeconds, getDay } from 'date-fns';
 import { satoshi } from './HeroSection';
+import Select from 'react-select';
 
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
@@ -52,7 +53,17 @@ export default function HomePage() {
 
   const [formData, setFormData] = useState({ name: '', email: '' });
 
-  
+  const[profesional, setSelectedProfesional] = useState<string>('Edward');
+
+  const profesionales = [
+    {value: 'Alondra', label: "Alondra"},
+    {value: 'Edward', label: "Edward"},
+    {value: 'Esteban', label: "Esteban"},
+    {value: 'Hanice', label: "Hanice"},
+    {value: 'Karla', label: "Karla"},
+    {value: 'Mayra', label: "Mayra"},
+    {value: 'Tatiana', label: "Tatiana"}
+  ]
 
   // Efeito para atualizar os horários disponíveis quando a data muda
   useEffect(() => {
@@ -64,6 +75,10 @@ export default function HomePage() {
   }, [selectedDate]);
 
 
+  //avoid hdyration problems
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
   // Busca os horários agendados sempre que a data selecionada muda
   useEffect(() => {
     if (selectedDate && !Array.isArray(selectedDate)) {
@@ -71,7 +86,9 @@ export default function HomePage() {
       setIsLoading(true);
       setError(null);
       
-      fetch(`../api/agendamento?date=${dateString}`)
+      console.log(profesional)
+
+      fetch(`../api/agendamento?date=${dateString}&prof=${profesional.toLocaleLowerCase()}`)
         .then(res => {
           if (!res.ok) {
             throw new Error('Error al buscar horarios.');
@@ -89,7 +106,7 @@ export default function HomePage() {
           setIsLoading(false);
         });
     }
-  }, [selectedDate]);
+  }, [selectedDate, profesional]);
 
 
   const handleDateChange = (date: Value) => {
@@ -109,6 +126,7 @@ export default function HomePage() {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
+
 
   const handleBooking = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -135,6 +153,7 @@ export default function HomePage() {
           endDateTime: endDateTime.toISOString(),
           patientName: formData.name,
           patientEmail: formData.email,
+          profesional: profesional
         }),
       });
 
@@ -154,13 +173,26 @@ export default function HomePage() {
     }
   };
 
+
   return (
     <div className={`flex min-h-fit flex-col items-center bg-lightpurple my-12 mb-44 ${satoshi.className}`}>       
         {error && <p className={`${error == "" ? "hidden" : ""} text-red-500 text-center mb-4`}>{error}</p>}
         <div className="grid md:grid-cols-2 gap-12">
           {/* Coluna do Calendário e Horários */}
           <div>
-            <h2 className="text-xl font-semibold text-gray-700 mb-4">1. Elige la fecha y la hora</h2>
+            <h2 className="text-xl font-semibold text-gray-700 mb-4">1. Elige el profesional, la fecha y la hora</h2>
+            <div className={`${satoshi.className} text-blackwrite p-2 mx-2 my-6 text-lg rounded-md`}>
+              {/* <select name="" id="" value={profesional} onChange={e => setSelectedProfesional(e.target.value)}>
+                {profesionales.map((p, i) => <option className={`${satoshi.className}`} value={p.toLocaleLowerCase()} key={i}>{p}</option>)}
+              </select> */}
+              {mounted && <Select 
+                placeholder = "Selecciona un profesional" 
+                onChange={e => setSelectedProfesional(e!.value.toString())}
+                options={profesionales}
+                isSearchable={false}
+                className={`rounded-md`}
+              />}
+            </div>
             <div className="flex justify-center">
               <Calendar
                 onChange={handleDateChange}
@@ -228,7 +260,7 @@ export default function HomePage() {
               </form>
             ) : (
               <div className="flex items-center justify-center h-full bg-gray-100 rounded-lg">
-                <p className="text-gray-500">Seleccione una fecha y hora para continuar.</p>
+                <p className="text-gray-500">Seleccione una fecha, hora y profesional para continuar.</p>
               </div>
             )}
           </div>

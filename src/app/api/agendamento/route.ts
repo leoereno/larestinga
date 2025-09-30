@@ -11,16 +11,61 @@ const auth = new google.auth.GoogleAuth({
 });
 
 const calendar = google.calendar({ version: 'v3', auth });
-const calendarId = process.env.GOOGLE_CALENDAR_ID;
+// const calendarId = process.env.GOOGLE_CALENDAR_ID;
+
+const profesionalsCalendarIds = [
+  {
+    name: 'alondra',
+    id: process.env.GOOGLE_CALENDAR_ID_ALONDRA
+  },
+  {
+    name: 'edward',
+    id: process.env.GOOGLE_CALENDAR_ID_EDWARD
+  },
+  {
+    name: 'esteban',
+    id: process.env.GOOGLE_CALENDAR_ID_ESTEBAN
+  },
+  {
+    name: 'hanice',
+    id: process.env.GOOGLE_CALENDAR_ID_HANICE
+  },
+  {
+    name: 'karla',
+    id: process.env.GOOGLE_CALENDAR_ID_KARLA
+  },
+  {
+    name: 'mayra',
+    id: process.env.GOOGLE_CALENDAR_ID_MAYRA
+  },
+  {
+    name: 'tatiana',
+    id: process.env.GOOGLE_CALENDAR_ID_TATIANA
+  }
+]
+
 
 // Função para buscar horários já agendados em um dia
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const date = searchParams.get('date');
+  const prof = searchParams.get('prof');
 
   if (!date) {
     return NextResponse.json({ error: 'Data não fornecida.' }, { status: 400 });
   }
+
+  if (!prof){
+    return NextResponse.json({error: 'Profesional não selecionado.'}, {status: 400})
+  }
+
+  const profesionalCalendar = profesionalsCalendarIds.find(x => x.name === prof);
+
+  if (!profesionalCalendar){
+    return NextResponse.json({error: 'Profesional não encontrado.'}, {status: 400})
+  }
+
+  const calendarId = profesionalCalendar.id;
 
   try {
     const startOfDay = new Date(date);
@@ -56,12 +101,20 @@ export async function GET(request: Request) {
 // Função para criar um novo agendamento
 export async function POST(request: Request) {
   try {
-    const { startDateTime, endDateTime, patientName, patientEmail } = await request.json();
+    const { startDateTime, endDateTime, patientName, patientEmail, profesional } = await request.json();
 
-    if (!startDateTime || !endDateTime || !patientName || !patientEmail) {
+    if (!startDateTime || !endDateTime || !patientName || !patientEmail || !profesional) {
       return NextResponse.json({ error: 'Dados incompletos para o agendamento.' }, { status: 400 });
     }
     
+    const profesionalCalendar = profesionalsCalendarIds.find(x => x.name === profesional);
+
+    if (!profesionalCalendar){
+      return NextResponse.json({error: 'Profesional não encontrado.'}, {status: 400})
+    }
+
+    const calendarId = profesionalCalendar.id;
+
     // Opcional: Verificar novamente se o horário está vago antes de inserir
     const checkResponse = await calendar.events.list({
       calendarId,

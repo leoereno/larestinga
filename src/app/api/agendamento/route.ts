@@ -50,6 +50,7 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const date = searchParams.get('date');
   const prof = searchParams.get('prof');
+  
 
   if (!date) {
     return NextResponse.json({ error: 'Data não fornecida.' }, { status: 400 });
@@ -103,11 +104,13 @@ export async function POST(request: Request) {
   try {
     const { startDateTime, endDateTime, patientName, patientEmail, profesional } = await request.json();
 
+
+
     if (!startDateTime || !endDateTime || !patientName || !patientEmail || !profesional) {
       return NextResponse.json({ error: 'Dados incompletos para o agendamento.' }, { status: 400 });
     }
     
-    const profesionalCalendar = profesionalsCalendarIds.find(x => x.name === profesional);
+    const profesionalCalendar = profesionalsCalendarIds.find(x => x.name === String(profesional).toLocaleLowerCase());
 
     if (!profesionalCalendar){
       return NextResponse.json({error: 'Profesional não encontrado.'}, {status: 400})
